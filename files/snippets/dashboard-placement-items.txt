@@ -1,0 +1,14 @@
+    readonly property list<MenuItem> placementItems: [
+        MenuItem {
+            text: Tr.tr("Off")
+            value: "off"
+        },
+        MenuItem {
+            text: Tr.tr("Right bar")
+            value: "right"
+        },
+        MenuItem {
+            text: Tr.tr("Top bar")
+            value: "top"
+        }
+    ]

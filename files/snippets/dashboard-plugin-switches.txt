@@ -1,0 +1,99 @@
+        // Plugin switches
+        SectionHeader {
+            text: Tr.tr("Plugin switches")
+        }
+
+        Flow {
+            Layout.fillWidth: true
+            Layout.leftMargin: Tokens.padding.large
+            Layout.rightMargin: Tokens.padding.large
+            spacing: Tokens.spacing.large
+
+            // Dashboard tabs: on/off, same settings as the toggles at the top of this page
+            ColumnLayout {
+                id: tabsGroup
+
+                spacing: Tokens.spacing.small
+
+                StyledText {
+                    text: qsTr("Dashboard tabs")
+                    font: Tokens.font.body.medium
+                    color: Colours.palette.m3onSurface
+                }
+
+                Row {
+                    spacing: Tokens.spacing.extraSmall
+
+                    Repeater {
+                        model: [
+                            { key: "showDashboard", label: "Dashboard", icon: "dashboard" },
+                            { key: "showMedia", label: "Media", icon: "queue_music" },
+                            { key: "showWeather", label: "Weather", icon: "cloud" },
+                            { key: "showPerformance", label: "Performance", icon: "speed" }
+                        ]
+
+                        delegate: IconButton {
+                            id: tabToggle
+
+                            required property var modelData
+
+                            readonly property bool isOn: Config.dashboard[tabToggle.modelData.key]
+
+                            icon: tabToggle.modelData.icon
+                            type: tabToggle.isOn ? ButtonBase.Tonal : ButtonBase.Text
+                            onClicked: GlobalConfig.dashboard[tabToggle.modelData.key] = !tabToggle.isOn
+                        }
+                    }
+                }
+            }
+
+            Repeater {
+                model: [
+                    { key: "tailscale", label: "Tailscale" },
+                    { key: "webcam", label: "Webcam" },
+                    { key: "screens", label: "Screens" },
+                    { key: "sony", label: "Sony" },
+                    { key: "syncthing", label: "Syncthing" }
+                ]
+
+                delegate: ColumnLayout {
+                    id: placement
+
+                    required property var modelData
+
+                    spacing: Tokens.spacing.small
+
+                    StyledText {
+                        text: placement.modelData.label
+                        font: Tokens.font.body.medium
+                        color: Colours.palette.m3onSurface
+                    }
+
+                    StyledText {
+                        text: root.placementItems.find(i => i.value === PluginState.placementOf(placement.modelData.key))?.text ?? ""
+                        font: Tokens.font.body.small
+                        color: Colours.palette.m3onSurfaceVariant
+                    }
+
+                    Row {
+                        spacing: Tokens.spacing.extraSmall
+
+                        Repeater {
+                            model: root.placementItems
+
+                            delegate: IconButton {
+                                id: option
+
+                                required property var modelData
+
+                                readonly property bool isCurrent: PluginState.placementOf(placement.modelData.key) === option.modelData.value
+
+                                icon: option.modelData.value === "off" ? "visibility_off" : option.modelData.value === "right" ? "view_sidebar" : "tab"
+                                type: option.isCurrent ? ButtonBase.Tonal : ButtonBase.Text
+                                onClicked: PluginState.setPlacement(placement.modelData.key, option.modelData.value)
+                            }
+                        }
+                    }
+                }
+            }
+        }

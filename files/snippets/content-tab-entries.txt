@@ -1,0 +1,34 @@
+            {
+                component: tailscaleTabComponent,
+                iconName: "vpn_lock",
+                iconSource: Tailscale.logo,
+                iconTinted: true,
+                text: Tr.tr("Tailscale"),
+                enabled: PluginState.placementOf("tailscale") === "top"
+            },
+            {
+                component: webcamTabComponent,
+                iconName: "videocam",
+                text: Tr.tr("Webcam"),
+                enabled: PluginState.placementOf("webcam") === "top"
+            },
+            {
+                component: screensTabComponent,
+                iconName: "desktop_windows",
+                text: Tr.tr("Screens"),
+                enabled: PluginState.placementOf("screens") === "top"
+            },
+            {
+                component: sonyTabComponent,
+                iconName: "headphones",
+                text: Tr.tr("Sony"),
+                enabled: PluginState.placementOf("sony") === "top"
+            },
+            {
+                component: syncthingTabComponent,
+                iconName: "sync",
+                iconSource: Syncthing.settings.iconStyle === "branded" ? Syncthing.logo : Syncthing.logoMono,
+                iconTinted: Syncthing.settings.iconStyle !== "branded",
+                text: Tr.tr("Syncthing"),
+                enabled: PluginState.placementOf("syncthing") === "top"
+            }

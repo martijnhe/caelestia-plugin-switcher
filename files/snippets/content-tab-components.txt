@@ -1,0 +1,95 @@
+            Component {
+                id: tailscaleTabComponent
+
+                Flickable {
+                    implicitWidth: 840
+                    implicitHeight: 480
+                    contentWidth: width
+                    contentHeight: tailscalePopout.implicitHeight
+                    clip: true
+
+                    TailscalePopout {
+                        id: tailscalePopout
+
+                        x: Math.max(0, (parent.width - width) / 2)
+                        popouts: PopoutState {}
+                    }
+                }
+            }
+
+            Component {
+                id: webcamTabComponent
+
+                Flickable {
+                    implicitWidth: 840
+                    implicitHeight: 480
+                    contentWidth: width
+                    contentHeight: webcamPopout.implicitHeight
+                    clip: true
+
+                    WebcamPopout {
+                        id: webcamPopout
+
+                        x: Math.max(0, (parent.width - width) / 2)
+                        popouts: PopoutState {}
+                    }
+                }
+            }
+
+            Component {
+                id: screensTabComponent
+
+                Flickable {
+                    implicitWidth: 840
+                    implicitHeight: 480
+                    contentWidth: width
+                    contentHeight: screensPopout.implicitHeight
+                    clip: true
+
+                    ScreensPopout {
+                        id: screensPopout
+
+                        x: Math.max(0, (parent.width - width) / 2)
+                        popouts: PopoutState {}
+                    }
+                }
+            }
+
+            Component {
+                id: sonyTabComponent
+
+                Flickable {
+                    implicitWidth: 840
+                    implicitHeight: 480
+                    contentWidth: width
+                    contentHeight: sonyPopout.implicitHeight
+                    clip: true
+
+                    SonyPopout {
+                        id: sonyPopout
+
+                        x: Math.max(0, (parent.width - width) / 2)
+                        popouts: PopoutState {}
+                    }
+                }
+            }
+
+            Component {
+                id: syncthingTabComponent
+
+                Flickable {
+                    implicitWidth: 840
+                    implicitHeight: 480
+                    contentWidth: width
+                    contentHeight: syncthingPopout.implicitHeight
+                    clip: true
+
+                    SyncthingPopout {
+                        id: syncthingPopout
+
+                        x: Math.max(0, (parent.width - width) / 2)
+                        popouts: PopoutState {}
+                    }
+                }
+            }
+
